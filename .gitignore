@@ -1,0 +1,11 @@
+bin
+obj
+.idea
+.vscode
+appsettings.Development.json
+*.DotSettings.user
+output.log
+.env*
+config/*
+.git/*
+.DS_Store

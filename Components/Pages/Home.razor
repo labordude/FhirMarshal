@@ -1,0 +1,129 @@
+@page "/"
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@using Microsoft.AspNetCore.WebUtilities
+@rendermode InteractiveServer
+@inject HttpClient HttpClient
+
+
+<MudGrid>
+    <MudItem xs="12" sm="8">
+
+        <MudPaper Class="flex-column flex-grow-1 gap-4 justify-start" Elevation="0" Height="100%">
+
+            <MudPaper Width="100%" Square="true">
+                <MudTextField T="string" Variant="Variant.Outlined" Text="@_sampleText" Lines="15" FullWidth="true"
+                              @bind-Value="_sampleText"/>
+            </MudPaper>
+            <MudPaper Class="d-flex justify-end flex-grow-1 gap-4 mt-6 mr-6" Elevation="0">
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="SubmitQuery">Submit Query
+                </MudButton>
+            </MudPaper>
+        </MudPaper>
+
+    </MudItem>
+    <MudItem xs="12" sm="4">
+        <MudPaper Height="100%" Square="true" Elevation="0">
+            @if (_queries.Count > 0)
+            {
+                <MudList Dense="true" T="QueryItem">
+                    @foreach (var query in _queries)
+                    {
+                        <MudListItem @onclick="() => _sampleText = query.Query">
+
+                            <MudText>@query.Title</MudText>
+
+                        </MudListItem>
+                    }
+                </MudList>
+            }
+        </MudPaper>
+    </MudItem>
+
+</MudGrid>
+
+
+<MudPaper Width="100%" Class="flex-column flex-grow-1 gap-4 justify-start" Elevation="0">
+    @if (_queryResults?.Count > 0)
+    {
+        <MudText Typo="Typo.h6">Results</MudText>
+        <MudTable Items="@_queryResults" Class="mt-4">
+            <HeaderContent>
+                @foreach (var column in _queryResults[0].EnumerateObject())
+                {
+                    <MudTh>@column.Name</MudTh>
+                }
+            </HeaderContent>
+            <RowTemplate>
+                @foreach (var column in context.EnumerateObject())
+                {
+                    <MudTd>
+                        @column.Value
+                    </MudTd>
+                }
+            </RowTemplate>
+        </MudTable>
+    }
+
+
+    else
+    {
+        <MudText Typo="Typo.h6">No results</MudText>
+    }
+
+
+</MudPaper>
+
+
+@code {
+    private string _sampleText = "SELECT * FROM patient LIMIT 10;";
+    private List<JsonElement>? _queryResults = new();
+    private List<QueryItem> _queries = new();
+
+
+    private async Task SubmitQuery()
+    {
+        if (_sampleText == string.Empty)
+        {
+            return;
+        }
+
+        var queryParams = new Dictionary<string, string>
+        {
+            { "query", _sampleText }
+        };
+        var url = QueryHelpers.AddQueryString("api/query", queryParams!);
+        var response = await HttpClient.GetFromJsonAsync<List<JsonElement>>(url);
+        _queryResults = response;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // try to load queries from wwwroot/lib/default.json
+        var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "web", "default.json");
+        QueryList? queryList;
+        if (File.Exists(fileName))
+        {
+            var queries = await File.ReadAllTextAsync(fileName);
+
+            queryList = JsonSerializer.Deserialize<QueryList>(queries);
+            if (queryList?.Queries.Count > 0)
+            {
+                // do something with queryList
+                _queries = queryList.Queries;
+            }
+        }
+    }
+
+    public class QueryList
+    {
+        [JsonPropertyName("queries")] public List<QueryItem> Queries { get; set; } = new();
+    }
+
+    public class QueryItem
+    {
+        [JsonPropertyName("query")] public string Query { get; set; } = string.Empty;
+        [JsonPropertyName("title")] public string Title { get; set; } = string.Empty;
+    }
+
+}
