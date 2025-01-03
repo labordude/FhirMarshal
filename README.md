@@ -75,14 +75,14 @@ still look at their repo, but I hope my contributions help the community.
 ### :camera: Screenshots
 
 <div align="center"> 
-  <p><img src="https://ik.imagekit.io/callofdadduty/main.png?updatedAt=1735931674749" alt="screenshot" width="360" height="auto" /></p>
-  <p><img src="https://ik.imagekit.io/callofdadduty/configuration.png?updatedAt=1735931674812" alt="screenshot" width="360" height="auto" /></p>
-   <p><img src="https://ik.imagekit.io/callofdadduty/init_db.png?updatedAt=1735931674664" alt="screenshot" width="360" height="auto" /></p>
-    <p><img src="https://ik.imagekit.io/callofdadduty/load_db.png?updatedAt=1735931674842" alt="screenshot" width="360" height="auto" /></p>
-     <p><img src="https://ik.imagekit.io/callofdadduty/web%20server.png?updatedAt=1735931674653" alt="screenshot" width="360" height="auto" /></p>
-      <p><img src="https://ik.imagekit.io/callofdadduty/start%20bulk.png?updatedAt=1735931774202" alt="screenshot" width="360" height="auto" /></p>
-        <p><img src="https://ik.imagekit.io/callofdadduty/retries.png?updatedAt=1735931773910" alt="screenshot" width="360" height="auto" /></p>
-          <p><img src="https://ik.imagekit.io/callofdadduty/all%20neat.png?updatedAt=1735931773886" alt="screenshot" width="360" height="auto" /></p>
+  <p><img src="https://ik.imagekit.io/callofdadduty/main.png?updatedAt=1735931674749" alt="screenshot" width="420" height="auto" /></p>
+  <p><img src="https://ik.imagekit.io/callofdadduty/configuration.png?updatedAt=1735931674812" alt="screenshot" width="420" height="auto" /></p>
+   <p><img src="https://ik.imagekit.io/callofdadduty/init_db.png?updatedAt=1735931674664" alt="screenshot" width="420" height="auto" /></p>
+    <p><img src="https://ik.imagekit.io/callofdadduty/load_db.png?updatedAt=1735931674842" alt="screenshot" width="420" height="auto" /></p>
+     <p><img src="https://ik.imagekit.io/callofdadduty/web%20server.png?updatedAt=1735931674653" alt="screenshot" width="420" height="auto" /></p>
+      <p><img src="https://ik.imagekit.io/callofdadduty/start%20bulk.png?updatedAt=1735931774202" alt="screenshot" width="420" height="auto" /></p>
+        <p><img src="https://ik.imagekit.io/callofdadduty/retries.png?updatedAt=1735931773910" alt="screenshot" width="420" height="auto" /></p>
+          <p><img src="https://ik.imagekit.io/callofdadduty/all%20neat.png?updatedAt=1735931773886" alt="screenshot" width="420" height="auto" /></p>
 </div>
 
 <!-- TechStack -->
